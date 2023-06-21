@@ -9,7 +9,6 @@ const createProject = async (projectData) => {
         throw error;
     }
 };
-const something
 
 const updateProject = async (id, updateData) => {
     try {
