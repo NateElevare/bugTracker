@@ -1,12 +1,15 @@
 const mongoose = require('mongoose');
 const projectSchema = new mongoose.Schema({
-    id: Number,
     name: String,
     description: String,
     startDate: Date,
-    modifiedDate: Date,
+    dueDate: Date,
     status: String,
-    priority: String
+    priority: Number,
+    userId: mongoose.Schema.Types.ObjectId,
+    collectionIds: [mongoose.Schema.Types.ObjectId],
+    timePunchIds: [mongoose.Schema.Types.ObjectId]
+
 });
 
-module.exports = mongoose.model('User', userSchema);
+module.exports = mongoose.model('Project', projectSchema);

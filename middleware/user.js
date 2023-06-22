@@ -1,4 +1,4 @@
-const User = require('./userModel'); // path to your User model file
+const User = require('../models/user'); // path to your User model file
 
 const createUser = async (userData) => {
     try {

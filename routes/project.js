@@ -4,14 +4,14 @@ const router = express.Router();
 const { createProject, readProject, updateProject, deleteProject } = require('../middleware/project');
 
 
-router.use('/projects',
-    user.require)
+// router.use('/projects',
+//     user.require)
 
-router.use('/projects/:id', 
-    projects.read)
+// router.use('/projects/:id', 
+//     readProject)
 
-router.post('/projects,',
-    projects.create)
+// router.post('/projects,',
+//     projects.create)
 
 
 //list projects
@@ -26,7 +26,7 @@ router.get('/projects/:id', (req, res, next) => {
 })
 
 router.post('/projects', (req, res, next) => {
-    //todo create project
+    
     res.send('This is to create project');
 })
 

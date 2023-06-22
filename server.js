@@ -1,8 +1,9 @@
 const express = require('express');
-//const { MongoClient, ServerApiVersion } = require('mongodb');
 const mongoose = require('mongoose');
 const config = require('./config/config');
 const app = express();
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
 const port = config.port;
 const password = encodeURIComponent("Ph8bJE4zmOJqx3OA");
 const URI = 'mongodb+srv://nate:Ph8bJE4zmOJqx3OA@cluster0.g2mze.mongodb.net/?retryWrites=true&w=majority';
@@ -15,51 +16,6 @@ mongoose.connection.on('connected', () => {
 mongoose.connect(URI, { useNewUrlParser: true, useUnifiedTopology: true })
 
 
-
-// Create a MongoClient with a MongoClientOptions object to set the Stable API version
-// const client = new MongoClient(URI, {
-//     serverApi: {
-//       version: ServerApiVersion.v1,
-//       strict: true,
-//       deprecationErrors: true,
-//     }
-//   });
-
-// async function connectToMongoDB() {
-// try {
-//     // Connect the client to the server	(optional starting in v4.7)
-//     await client.connect();
-//     // Send a ping to confirm a successful connection
-//     await client.db("admin").command({ ping: 1 });
-//     console.log("Pinged your deployment. You successfully connected to MongoDB!");
-// } finally {
-//     // Ensures that the client will close when you finish/error
-//     await client.close();
-// }
-// }
-// connectToMongoDB().catch(console.dir);
-
-
-    
-//function that connects to the database
-// async function connectToMongoDB() {
-//     const client = new MongoClient(URI, { useNewUrlParser: true, useUnifiedTopology: true });
-//     try {
-//         // Connect to the MongoDB cluster
-//         await client.connect();
-//         // Make the appropriate DB calls
-//         //await listDatabases(client);
-//         const databasesList = await client.db().admin().listDatabases();
-//         console.log("Databases:");
-//         databasesList.databases.forEach(db => console.log(` - ${db.name}`));
-//     } catch (e) {
-//         console.error(e);
-//     } finally {
-//         await client.close();
-//     }
-// }
-// connectToMongoDB().catch(console.error);
-
 const home = require('./routes/home');
 const stage = require('./routes/stage');
 const auth = require('./routes/Auth');
@@ -69,7 +25,6 @@ const projects = require('./routes/project');
 const task = require('./routes/task'); 
 const timeCard = require('./routes/timeCard');
 const user = require('./routes/user');
-
 
 app.use(home)
 app.use(stage)
