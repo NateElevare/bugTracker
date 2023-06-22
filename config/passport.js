@@ -1,32 +1,36 @@
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const mongoose = require('mongoose');
-const User = mongoose.model('User');
+const User = require('../models/user'); 
 
 passport.serializeUser((user, done) => {
+
     done(null, user.id);
 });
 
-passport.deserializeUser((id, done) => {
-    User.findById(id, (err, user) => {
-        done(err, user);
-    });
+passport.deserializeUser(async (id, done) => {
+    try {
+        let user = await User.findById(id);
+        done(null, user);
+    } catch(err) {
+        done(err);
+    }
 });
 
 passport.use(new LocalStrategy(
-    { usernameField: 'email' }, // if it's 'username' in your model, replace 'email' with 'username'
-    (username, password, done) => {
-        User.findOne({ email: username }, (err, user) => {
-            if (err) { 
-                return done(err); 
+    async function(username, password, done) {
+        try {
+            let user = await User.findOne({ username: username });
+            if (!user) {
+                return done(null, false, { message: 'Incorrect username.' });
             }
-            if (!user) { 
-                return done(null, false, { message: 'Incorrect username.' }); 
-            }
-            if (!user.validPassword(password)) { // 'validPassword' should be a method in your User model that checks if the hashed password matches
-                return done(null, false, { message: 'Incorrect password.' }); 
+            if (!user.validPassword(password)) {
+                return done(null, false, { message: 'Incorrect password.' });
             }
             return done(null, user);
-        });
+        } catch(err) {
+            return done(err);
+        }
     }
 ));
+module.exports = passport;

@@ -1,4 +1,5 @@
 const Project = require('../models/project'); // path to your User model file
+const { findUser, createUser, modifyUser, listUsers, deleteUser } = require('./user');
 
 const createProject = async (projectData) => {
     try {
