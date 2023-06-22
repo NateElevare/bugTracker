@@ -17,7 +17,10 @@
   },
   "homepage": "https://github.com/NateElevare/bugTracker#readme",
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.18.2",
-    "mongoose": "^7.3.1"
+    "mongoose": "^7.3.1",
+    "passport": "^0.6.0",
+    "passport-local": "^1.0.0"
   }
 }
