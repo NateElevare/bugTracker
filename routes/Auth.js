@@ -27,15 +27,13 @@ router.get('/logout', (req, res) => {
 });
 
 router.post('/register', (req, res) => {
-    console.log(req.body)
     const user = new User({
         username: req.body.username,
         password: req.body.password,
     });
     user.save().then((user) => {
-        return res.redirect('/home');
+        return res.status(200).send(user);
     }).catch((err) => {
-        console.log(err);
         return res.status(400).send(err.message);
     });
 });
