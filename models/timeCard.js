@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 const timeCardSchema = new mongoose.Schema({
-    timeIn: Date,
-    timeOut: Date,
+    name: String,
     projectId: mongoose.Schema.Types.ObjectId,
     punchIds: [mongoose.Schema.Types.ObjectId],
 
