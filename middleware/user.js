@@ -46,6 +46,7 @@ const deleteUser = async (userId) => {
     }
 };
 
+
 module.exports = {
     findUser,
     createUser,

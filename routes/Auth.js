@@ -9,21 +9,28 @@ router.get('/auth', (req, res, next) => {
 })
 
 router.post('/login', passport.authenticate('local', {
-    successRedirect: '/',
-    failureRedirect: '/login',
     failureFlash: true
-}));
+}), (req, res) => {
+    res.status(200).send(req.user);
+
+});
+
 
 router.get('/logout', (req, res) => {
-    req.logout(() => {});
-    req.session.destroy(err => {
-        if (err) {  
+    req.logout((err) => {
+        if (err) {
             return res.send(err);
         }
-        // Moved this inside the callback
-        res.clearCookie('connect.sid');
-        res.status(200).send('You are logged out'); // Here, req.user will be undefined since the user is already logged out
+
     });
+    res.clearCookie('connect.sid');
+    res.status(200).send('You are logged out');
+    // req.session.destroy(err => {
+    //     if (err) {  
+    //         return res.send(err);
+    //     }
+    //     // Moved this inside the callback
+    // });
 });
 
 router.post('/register', (req, res) => {

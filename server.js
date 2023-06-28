@@ -10,7 +10,8 @@ const session = require('express-session');
 const flash = require('connect-flash');
 const cookieParser = require('cookie-parser');
 const app = express();
-
+const payload = require("./middleware/payload");
+const isAuthorized = require('./middleware/auth');
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
@@ -25,14 +26,15 @@ app.use(session({
     secret: 'cownow',
     resave: false,
     saveUninitialized: false,
-    cookie: { secure: false }
+    cookie: { secure: false,
+        maxAge: 1000 * 60 * 60 }
 }));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
-
-app.use(require('./routes/user'))
 app.use(require('./routes/Auth'))
+app.use(isAuthorized)
+app.use(require('./routes/user'))
 app.use(require('./routes/home'))
 app.use(require('./routes/stage'))
 app.use(require('./routes/bug'))
@@ -40,6 +42,7 @@ app.use(require('./routes/collection'))
 app.use(require('./routes/project'))
 app.use(require('./routes/task'))
 app.use(require('./routes/timeCard'))
+app.use(payload)
 
 
 

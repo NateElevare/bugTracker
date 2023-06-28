@@ -4,7 +4,6 @@ const router = express.Router();
 const { findUser, createUser, modifyUser, listUsers, deleteUser } = require('../middleware/user');
 
 
-
 router.get('/user/:id', async (req, res) => {
     try {
         const foundUser = await findUser(req.params.id)
@@ -15,6 +14,7 @@ router.get('/user/:id', async (req, res) => {
 })
 
 router.get('/users', async (req, res) => {
+    
     try {
         const userList = await listUsers()
         res.status(200).json(userList)
