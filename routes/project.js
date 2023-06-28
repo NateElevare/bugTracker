@@ -2,16 +2,10 @@
 const express = require('express');
 const router = express.Router();
 const { createProject, readProject, updateProject, deleteProject, listProjects } = require('../middleware/project');
+const mongoose = require('mongoose');
 
 
-// router.use('/projects',
-//     user.require)
 
-// router.use('/projects/:id', 
-//     readProject)
-
-// router.post('/projects,',
-//     projects.create)
 
 
 //list projects
@@ -34,8 +28,11 @@ router.get('/projects/:id', async (req, res) => {
 })
 
 router.post('/projects', async (req, res) => {
+    let projectData = req.body
+    projectData.userId = req.session.passport.user;
+
     try {
-        const createdProject = await createProject(req.body);
+        const createdProject = await createProject(projectData);
         res.json(createdProject);
     } catch (error) {
         res.status(500).json({ message: error.message });
