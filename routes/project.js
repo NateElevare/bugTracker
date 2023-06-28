@@ -1,7 +1,7 @@
 
 const express = require('express');
 const router = express.Router();
-const { createProject, readProject, updateProject, deleteProject, listProjects } = require('../middleware/project');
+const { createProject, readProject, updateProject, deleteProject, listProjects, deleteAllProjects } = require('../middleware/project');
 const mongoose = require('mongoose');
 
 
@@ -56,6 +56,17 @@ router.delete('/projects/:id', async (req, res, next) => {
         res.status(500).json({ message: error.message });
     }
 })
+
+router.delete('/projects', async (req, res, next) => {
+    try {
+        const deletedProjects = await deleteAllProjects();
+        res.json(deletedProjects);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+})
+
+
 
 
 module.exports = router;

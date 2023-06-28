@@ -8,7 +8,7 @@ const projectSchema = new mongoose.Schema({
     priority: Number,
     userId: mongoose.Schema.Types.ObjectId,
     collectionIds: [mongoose.Schema.Types.ObjectId],
-    timePunchIds: [mongoose.Schema.Types.ObjectId]
+    timeCardIds: [mongoose.Schema.Types.ObjectId]
 
 });
 

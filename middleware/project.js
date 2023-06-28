@@ -1,5 +1,4 @@
 const Project = require('../models/project'); // path to your User model file
-const { findUser, createUser, modifyUser, listUsers, deleteUser } = require('./user');
 const mongoose = require('mongoose');
 
 const createProject = async (projectData) => {
@@ -48,10 +47,20 @@ const deleteProject = async (id) => {
     }
 };
 
+const deleteAllProjects = async () => {
+    try {
+        const deletedProjects = await Project.deleteMany();
+        return deletedProjects;
+    } catch (error) {
+        throw error;
+    }
+}
+
 module.exports = {
     readProject,
     createProject,
     updateProject,
     listProjects,
-    deleteProject
+    deleteProject,
+    deleteAllProjects
 };

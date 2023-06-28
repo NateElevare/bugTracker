@@ -33,13 +33,6 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
 
-// app.use((req, res, next) => {
-//   console.log('Session: ', req.session);
-//   next();
-// });
-
-
-
 
 app.use(require('./routes/Auth'))
 app.use(isAuthorized)
@@ -50,7 +43,7 @@ app.use(require('./routes/bug'))
 app.use(require('./routes/collection'))
 app.use(require('./routes/project'))
 app.use(require('./routes/task'))
-app.use(require('./routes/timeCard'))
+app.use(require('./routes/punch'))
 app.use(payload)
 
 
