@@ -37,13 +37,13 @@ app.use(flash());
 app.use(require('./routes/Auth'))
 app.use(isAuthorized)
 app.use(require('./routes/user'))
-app.use(require('./routes/home'))
 app.use(require('./routes/stage'))
 app.use(require('./routes/bug'))
 app.use(require('./routes/collection'))
 app.use(require('./routes/project'))
 app.use(require('./routes/task'))
 app.use(require('./routes/punch'))
+//app.use(require('./routes/timeCard'))
 app.use(payload)
 
 

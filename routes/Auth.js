@@ -25,12 +25,6 @@ router.get('/logout', (req, res) => {
     });
     res.clearCookie('connect.sid');
     res.status(200).send('You are logged out');
-    // req.session.destroy(err => {
-    //     if (err) {  
-    //         return res.send(err);
-    //     }
-    //     // Moved this inside the callback
-    // });
 });
 
 router.post('/register', (req, res) => {
@@ -44,14 +38,6 @@ router.post('/register', (req, res) => {
         return res.status(400).send(err.message);
     });
 });
-
-router.put('/auth', (req, res, next) => {
-    res.send('This is put in auth.js');
-})
-
-router.delete('/auth', (req, res, next) => {
-    res.send('This is delete in auth.js');
-})
 
 
 module.exports = router;
