@@ -15,8 +15,14 @@ router.post('/collections', async (req, res) => {
 
 router.get('/collections', async (req, res) => {
     try {
-        const collections = await listCollection();
-        res.status(200).json(collections)
+        const projectId = req.query.projectId;
+        if (projectId) {
+            let collections = await listCollection(projectId);
+            res.status(200).json(collections)
+        } else {
+            let collections = await listCollection();
+            res.status(200).json(collections)
+        }
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
@@ -30,6 +36,7 @@ router.get('/collections/:id', async (req, res) => {
         res.status(500).json({ message: error.message });
     }
 })
+
 
 router.put('/collections/:id', async (req, res) => {
     try {

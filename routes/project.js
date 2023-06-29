@@ -2,6 +2,7 @@
 const express = require('express');
 const router = express.Router();
 const { createProject, readProject, updateProject, deleteProject, listProjects, deleteAllProjects } = require('../middleware/project');
+const { updateUser } = require('../middleware/user');
 const mongoose = require('mongoose');
 
 
@@ -33,7 +34,8 @@ router.post('/projects', async (req, res) => {
 
     try {
         const createdProject = await createProject(projectData);
-        res.json(createdProject);
+        const updatedUser = await updateUser(req.session.passport.user, { $push: { projectIds: createdProject._id } });
+        res.status(200).json(createdProject);
     } catch (error) {
         res.status(500).json({ message: error.message });
     }

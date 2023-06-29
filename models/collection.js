@@ -2,8 +2,14 @@ const mongoose = require('mongoose');
 const collectionSchema = new mongoose.Schema({
     name: String,
     description: String,
-    projectId: mongoose.Schema.Types.ObjectId,
-    stageIds: [mongoose.Schema.Types.ObjectId],
+    projectId: {
+        type: mongoose.Schema.Types.ObjectId, 
+        ref: 'Project'
+    },
+    stageIds: [{
+        type: mongoose.Schema.Types.ObjectId, 
+        ref: 'Stage'
+    }]
 
 });
 

@@ -10,7 +10,7 @@ const createUser = async (userData) => {
     }
 };
 
-const modifyUser = async (userId, updateData) => {
+const updateUser = async (userId, updateData) => {
     try {
         const updatedUser = await User.findByIdAndUpdate(userId, updateData, { new: true });
         return updatedUser;
@@ -50,7 +50,7 @@ const deleteUser = async (userId) => {
 module.exports = {
     findUser,
     createUser,
-    modifyUser,
+    updateUser,
     listUsers,
     deleteUser
 };

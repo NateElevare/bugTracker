@@ -10,7 +10,10 @@ const userSchema = new mongoose.Schema({
     password: String,
     admin: Boolean,
     active: Boolean,
-    projectIds: [mongoose.Schema.Types.ObjectId]
+    projectIds: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Project'
+    }]
 });
 
 
@@ -27,7 +30,6 @@ userSchema.pre('save', async function(next) {
 
 // Method to validate password
 userSchema.methods.validPassword = async function(password) {
-    console.log('validPassword')
     return await bcrypt.compare(password, this.password);
 };
 

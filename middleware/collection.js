@@ -29,10 +29,15 @@ const readCollection = async (id) => {
     }
 };
 
-const listCollection = async () => {
+const listCollection = async (id) => {
     try {
-        const collections = await Collection.find();
-        return collections;
+        if(id){
+            const collections = await Collection.find({ projectId: id })
+            return collections;
+        }else{
+            const collections = await Collection.find();
+            return collections;
+        }
     } catch (error) {
         throw error;
     }

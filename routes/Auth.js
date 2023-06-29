@@ -10,8 +10,9 @@ router.get('/auth', (req, res, next) => {
 
 router.post('/login', passport.authenticate('local', {
     failureFlash: true
-}), (req, res) => {
-    res.status(200).send(req.user);
+}), async (req, res) => {
+    const userProjects = await User.findById(req.user._id).populate('projectIds').exec();
+    res.status(200).send(userProjects);
 
 });
 

@@ -6,9 +6,18 @@ const projectSchema = new mongoose.Schema({
     dueDate: Date,
     status: String,
     priority: Number,
-    userId: mongoose.Schema.Types.ObjectId,
-    collectionIds: [mongoose.Schema.Types.ObjectId],
-    timeCardIds: [mongoose.Schema.Types.ObjectId]
+    userId: {
+        type: mongoose.Schema.Types.ObjectId, 
+        ref: 'User'
+    },
+    collectionIds: [{
+        type: mongoose.Schema.Types.ObjectId, 
+        ref: 'Collection'
+    }],
+    timeCardIds: [{
+        type: mongoose.Schema.Types.ObjectId, 
+        ref: 'TimeCard'
+    }],
 
 });
 
