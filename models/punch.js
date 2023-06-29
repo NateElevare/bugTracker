@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
-const timeCardSchema = new mongoose.Schema({
+const punchSchema = new mongoose.Schema({
     timeIn: Date,
     timeOut: Date,
     timeCardId: mongoose.Schema.Types.ObjectId
 
 });
 
-module.exports = mongoose.model('Collection', timeCardSchema);
+module.exports = mongoose.model('Punch', punchSchema);

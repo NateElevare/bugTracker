@@ -6,4 +6,4 @@ const timeCardSchema = new mongoose.Schema({
 
 });
 
-module.exports = mongoose.model('Collection', timeCardSchema);
+module.exports = mongoose.model('TimeCard', timeCardSchema);

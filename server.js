@@ -43,12 +43,12 @@ app.use(require('./routes/collection'))
 app.use(require('./routes/project'))
 app.use(require('./routes/task'))
 app.use(require('./routes/punch'))
-//app.use(require('./routes/timeCard'))
+app.use(require('./routes/timeCard'))
 app.use(payload)
 
 
 mongoose.connection.on('connected', () => {
-    console.log('Mongoose is connected!!!!');
+    console.log('Mongoose is connected!');
 })
 
 mongoose.connect(URI, { useNewUrlParser: true, useUnifiedTopology: true })
