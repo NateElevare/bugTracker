@@ -10,6 +10,10 @@ const stageSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Task'
     }],
+    bugIds: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Bug'
+    }]
 
 });
 

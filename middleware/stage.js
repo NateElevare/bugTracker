@@ -29,10 +29,19 @@ const readStage = async (id) => {
     }
 };
 
-const listStage = async () => {
+const listStage = async (id) => {
     try {
-        const stages = await Stage.find();
-        return stages;
+        console.log(id);
+        if(id){
+            let stages = await Stage.find({ collectionId: id })
+            const populatedStages = await Promise.all(stages.map(async stage => {
+                return await Stage.populate(stage, 'taskIds');
+            }))
+            return(populatedStages);
+        }else{
+            let stages = await Stage.find();
+            return stages;
+        }
     } catch (error) {
         throw error;
     }

@@ -15,8 +15,9 @@ router.post('/stages', async (req, res) => {
 
 router.get('/stages', async (req, res) => {
     try {
-        const stages = await listStage();
+        const stages = await listStage(req.query.collectionId);
         res.status(200).json(stages)
+        
     } catch (error) {
         res.status(500).json({ message: error.message });
     }

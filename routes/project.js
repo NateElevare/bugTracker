@@ -34,7 +34,7 @@ router.post('/projects', async (req, res) => {
 
     try {
         const createdProject = await createProject(projectData);
-        const updatedUser = await updateUser(req.session.passport.user, { $push: { projectIds: createdProject._id } });
+        await updateUser(req.session.passport.user, { $push: { projectIds: createdProject._id } });
         res.status(200).json(createdProject);
     } catch (error) {
         res.status(500).json({ message: error.message });

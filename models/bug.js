@@ -3,7 +3,10 @@ const bugSchema = new mongoose.Schema({
     name: String,
     description: String,
     priority: Number,
-    stageId: mongoose.Schema.Types.ObjectId
+    stageId: {
+        type: mongoose.Schema.Types.ObjectId, 
+        ref: 'Stage'
+}
 
 });
 
