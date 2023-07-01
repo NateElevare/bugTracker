@@ -7,27 +7,7 @@ const mongoose = require('mongoose');
 
 
 
-
-
-//list projects
-router.get('/projects', async (req, res) => {
-    try {
-        const projects = await listProjects();
-        res.status(200).json(projects)
-    } catch (error) {
-        res.status(500).json({ message: error.message });
-    }
-})
-
-router.get('/projects/:id', async (req, res) => {
-    try {
-        const reProject = await readProject(req.params.id);
-        res.json(reProject);
-    } catch (error) {
-        res.status(500).json({ message: error.message });
-    }
-})
-
+//Create Project
 router.post('/projects', async (req, res) => {
     let projectData = req.body
     projectData.userId = req.session.passport.user;
@@ -40,6 +20,26 @@ router.post('/projects', async (req, res) => {
         res.status(500).json({ message: error.message });
     }
 })
+
+//list projects
+router.get('/projects', async (req, res) => {
+    try {
+        const projects = await listProjects();
+        res.status(200).json(projects)
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+})
+//List one project
+router.get('/projects/:id', async (req, res) => {
+    try {
+        const reProject = await readProject(req.params.id);
+        res.json(reProject);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+})
+
 
 router.put('/projects/:id', async (req, res) => {
     try {

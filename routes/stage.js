@@ -5,8 +5,10 @@ const { createStage, readStage, updateStage, deleteStage, listStage, deleteAllSt
 
 
 router.post('/stages', async (req, res) => {
+    let stageData = req.body
+    stageData.userId = req.session.passport.user;
     try {
-        const createdStage = await createStage(req.body);
+        const createdStage = await createStage(StageData);
         res.json(createdStage);
     } catch (error) {
         res.status(500).json({ message: error.message });

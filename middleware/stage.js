@@ -31,7 +31,6 @@ const readStage = async (id) => {
 
 const listStage = async (id) => {
     try {
-        console.log(id);
         if(id){
             let stages = await Stage.find({ collectionId: id })
             const populatedStages = await Promise.all(stages.map(async stage => {

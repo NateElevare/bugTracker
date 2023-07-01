@@ -2,11 +2,16 @@
 const express = require('express');
 const router = express.Router();
 const { createTask, readTask, updateTask, deleteTask, listTask, deleteAllTasks } = require('../middleware/task');
+const Stage = require('../models/stage');
+const { updateStage } = require('../middleware/stage');
 
 
 router.post('/tasks', async (req, res) => {
+    let taskData = req.body
+    taskData.userId = req.session.passport.user;
     try {
-        const createdTask = await createTask(req.body);
+        const createdTask = await createTask(taskData);
+        await updateStage(req.body.stageId, { $push: { taskIds: createdTask._id } });
         res.json(createdTask);
     } catch (error) {
         res.status(500).json({ message: error.message });
@@ -42,7 +47,9 @@ router.put('/tasks/:id', async (req, res) => {
 
 router.delete('/tasks/:id', async (req, res, next) => {
     try {
+        const taskId = req.params.id;
         const deletedColleciton = await deleteTask(req.params.id);
+        await Stage.findByIdAndDelete(taskId,{ $pull: {taskIds: taskId}}, { new: true});
         res.json(deletedColleciton);
     } catch (error) {
         res.status(500).json({ message: error.message });
@@ -51,7 +58,9 @@ router.delete('/tasks/:id', async (req, res, next) => {
 
 router.delete('/tasks', async (req, res, next) => {
     try {
+ 
         const deletedCollecitons = await deleteAllTasks();
+        await Stage.findByIdAndUpdate(taskId,{ $set: {taskIds: []}}, { new: true});
         res.json(deletedCollecitons);
     } catch (error) {
         res.status(500).json({ message: error.message });

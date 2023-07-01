@@ -2,6 +2,10 @@ const mongoose = require('mongoose');
 const stageSchema = new mongoose.Schema({
     name: String,
     description: String,
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    },
     collectionId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Collection'
