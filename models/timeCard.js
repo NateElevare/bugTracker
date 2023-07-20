@@ -3,7 +3,11 @@ const timeCardSchema = new mongoose.Schema({
     name: String,
     projectId: mongoose.Schema.Types.ObjectId,
     punchIds: [mongoose.Schema.Types.ObjectId],
-    user: {
+    createdOn: {
+        type: Date,
+        default: Date.now
+    },
+    creator: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     }

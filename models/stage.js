@@ -6,6 +6,10 @@ const stageSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     },
+    createdOn: {
+        type: Date,
+        default: Date.now
+    },
     collectionId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Collection'

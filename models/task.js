@@ -18,7 +18,11 @@ const taskSchema = new mongoose.Schema({
     stageId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Stage'
-    }
+    },
+    createdOn: {
+        type: Date,
+        default: Date.now
+    },
 
 });
 

@@ -1,9 +1,15 @@
 const mongoose = require('mongoose');
 const punchSchema = new mongoose.Schema({
-    timeIn: Date,
-    timeOut: Date,
-    timeCardId: mongoose.Schema.Types.ObjectId,
-    user: {
+    in: Boolean,
+    createdOn: {
+        type: Date,
+        default: Date.now
+    },
+    timeCardId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'TimeCard'
+    },
+    creator: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     }

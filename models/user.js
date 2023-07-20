@@ -10,6 +10,15 @@ const userSchema = new mongoose.Schema({
     password: String,
     admin: Boolean,
     active: Boolean,
+    createdOn: {
+        type: Date,
+        default: Date.now
+    },
+    createdBy: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    },
+
     projectIds: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Project'

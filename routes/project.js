@@ -10,7 +10,7 @@ const mongoose = require('mongoose');
 //Create Project
 router.post('/projects', async (req, res) => {
     let projectData = req.body
-    projectData.userId = req.session.passport.user;
+    projectData.owner = req.session.passport.user;
 
     try {
         const createdProject = await createProject(projectData);
