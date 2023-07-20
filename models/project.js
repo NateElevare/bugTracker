@@ -6,10 +6,18 @@ const projectSchema = new mongoose.Schema({
     dueDate: Date,
     status: String,
     priority: Number,
-    userId: {
-        type: mongoose.Schema.Types.ObjectId, 
+    creator:{
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     },
+    owner: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    },
+    team: [{
+        type: mongoose.Schema.Types.ObjectId, 
+        ref: 'User'
+    }],
     collectionIds: [{
         type: mongoose.Schema.Types.ObjectId, 
         ref: 'Collection'

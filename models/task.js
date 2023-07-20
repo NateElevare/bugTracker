@@ -3,7 +3,15 @@ const taskSchema = new mongoose.Schema({
     name: String,
     description: String,
     priority: Number,
-    user: {
+    creator: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    },
+    owner: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    },
+    assignedTo: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     },

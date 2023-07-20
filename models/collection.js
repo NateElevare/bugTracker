@@ -2,7 +2,15 @@ const mongoose = require('mongoose');
 const collectionSchema = new mongoose.Schema({
     name: String,
     description: String,
-    user: {
+    creator: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    },
+    owner: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    },
+    team: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     },

@@ -1,4 +1,4 @@
 {
     "port": 5000,
-    "URI": "mongodb+srv://nate:Freakazoide1988!@cluster0.g2mze.mongodb.net/?retryWrites=true&w=majority"
+    "URI": "mongodb+srv://nate:Freakazoide1988@cluster0.g2mze.mongodb.net/?retryWrites=true&w=majority"
 }

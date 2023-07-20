@@ -2,8 +2,8 @@ const express = require('express');
 const mongoose = require('mongoose');
 const config = require('./config/config');
 const port = config.port;
-const password = encodeURIComponent("Ph8bJE4zmOJqx3OA");
-const URI = 'mongodb+srv://nate:Ph8bJE4zmOJqx3OA@cluster0.g2mze.mongodb.net/?retryWrites=true&w=majority';
+const password = encodeURIComponent("O2vNqmj6c8J9GTNv");
+const URI = 'mongodb+srv://nate:O2vNqmj6c8J9GTNv@cluster0.g2mze.mongodb.net/bugTacker?retryWrites=true&w=majority';
 const cors = require("cors")
 const passport = require('./config/passport');
 const session = require('express-session');
@@ -47,11 +47,20 @@ app.use(require('./routes/timeCard'))
 app.use(payload)
 
 
-mongoose.connection.on('connected', () => {
-    console.log('Mongoose is connected!');
-})
 
-mongoose.connect(URI, { useNewUrlParser: true, useUnifiedTopology: true })
+// mongoose.connection.on('error', (error) => {
+//   console.log('The error is: ', error)
+// })
+
+try {
+  mongoose.connect(URI, { useNewUrlParser: true, useUnifiedTopology: true })
+  mongoose.connection.on('connected', () => {
+    console.log('Mongoose is connected!');
+  })
+} catch (error){
+  console.log(error)
+}
+
 
 
 

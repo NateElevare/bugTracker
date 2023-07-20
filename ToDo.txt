@@ -1,0 +1,17 @@
+Version 1
+
+
+
+Version 2
+
+//Figure out the process of inviting someone to your project.
+    If user is already registered
+    If user is not already registered
+    If user is already a part of the project
+    If user is not part of the project
+    If user refuses invite
+    If user accepts invite
+
+//Figure out how to work out having multiple people making updates to the same project at the same time. 
+    We would need to send updates on change instead of holding the information in the DOM first like planned
+    
